@@ -213,9 +213,12 @@ export function Sidebar({ isOpen, onClose, onSelectServer, activeServer }: Sideb
         </ScrollArea>
 
         {/* Footer */}
-        <div className="p-4 border-t border-sidebar-border">
+        <div className="p-4 border-t border-sidebar-border space-y-1">
           <p className="text-[10px] text-muted-foreground text-center">
             {MCP_SERVERS.length} MCP servers available
+          </p>
+          <p className="text-[10px] text-muted-foreground text-center">
+            Powered by <a href="https://github.com/mithunsinghtocode" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Mithun Singh</a>
           </p>
         </div>
       </aside>

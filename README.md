@@ -272,14 +272,14 @@ MIT License - see [LICENSE](LICENSE) for details.
 
 ## 🙏 Acknowledgments
 
-- [Model Context Protocol](https://modelcontextprotocol.io/) by Anthropic
+- [Model Context Protocol](https://modelcontextprotocol.io/) for the protocol specification
 - [shadcn/ui](https://ui.shadcn.com/) for beautiful components
 - [Postman MCP Collection](https://www.postman.com/explore/mcp-servers) for server references
 
 ---
 
 <p align="center">
-  Built with ❤️ for the MCP community
+  <strong>Powered by Mithun Singh</strong>
   <br><br>
   <a href="https://github.com/mithunsinghtocode/mcpilot">⭐ Star on GitHub</a> •
   <a href="https://github.com/mithunsinghtocode/mcpilot/issues">🐛 Report Bug</a> •
