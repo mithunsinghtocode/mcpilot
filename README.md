@@ -5,7 +5,7 @@
 [![MCPilot](https://img.shields.io/badge/MCP-Pilot-blue?style=for-the-badge)](https://github.com/mithunsinghtocode/mcpilot)
 [![Next.js](https://img.shields.io/badge/Next.js-16-black?style=for-the-badge)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?style=for-the-badge)](https://www.typescriptlang.org/)
-[![Deploy with Vercel](https://img.shields.io/badge/Deploy-Vercel-black?style=for-the-badge&logo=vercel)](https://vercel.com/new/clone?repository-url=https://github.com/mithunsinghtocode/mcpilot)
+[![Deploy to Netlify](https://img.shields.io/badge/Deploy-Netlify-00C7B7?style=for-the-badge&logo=netlify)](https://app.netlify.com/start/deploy?repository=https://github.com/mithunsinghtocode/mcpilot)
 
 ## 📸 Screenshots
 
@@ -38,9 +38,9 @@
 
 ## 🌐 Live Demo
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/mithunsinghtocode/mcpilot)
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/mithunsinghtocode/mcpilot)
 
-> Click the button above to deploy your own instance to Vercel in one click!
+> Click the button above to deploy your own instance to Netlify for free!
 
 ## 🚀 Quick Start
 
@@ -117,45 +117,73 @@ STRIPE_SECRET_KEY=sk_xxxxx
 
 ## 🚀 Deployment
 
-### Deploy to Vercel (Recommended)
-
-The easiest way to deploy MCPilot is using Vercel:
+### Deploy to Netlify (Recommended - Free)
 
 1. **One-Click Deploy:**
    
-   [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/mithunsinghtocode/mcpilot)
+   [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/mithunsinghtocode/mcpilot)
 
-2. **Manual Deploy:**
+2. **Via Netlify Dashboard:**
+   - Go to [netlify.com](https://netlify.com) and sign up/login
+   - Click "Add new site" → "Import an existing project"
+   - Connect your GitHub and select `mcpilot` repository
+   - Click "Deploy site"
+   - Your app will be live at `https://your-site-name.netlify.app`
+
+3. **Via Netlify CLI:**
    ```bash
-   # Install Vercel CLI
-   npm i -g vercel
+   # Install Netlify CLI
+   npm i -g netlify-cli
+   
+   # Login to Netlify
+   netlify login
    
    # Deploy
-   vercel
+   netlify deploy --prod
    ```
 
-3. **Via GitHub Integration:**
-   - Go to [vercel.com](https://vercel.com)
-   - Click "New Project"
-   - Import your GitHub repository
-   - Click "Deploy"
+### Environment Variables (Netlify)
 
-### Environment Variables (Vercel)
-
-Add your API keys in Vercel Dashboard:
-1. Go to Project Settings → Environment Variables
+Add your API keys in Netlify Dashboard:
+1. Go to Site Settings → Environment Variables
 2. Add each key (e.g., `GITHUB_TOKEN`, `OPENAI_API_KEY`)
-3. Redeploy for changes to take effect
+3. Trigger a new deploy for changes to take effect
 
-### Other Platforms
+### Other Free Platforms
 
-| Platform | Support | Notes |
-|----------|---------|-------|
-| **Vercel** | ✅ Full | Recommended, zero-config |
-| **Netlify** | ✅ Full | Use `@netlify/plugin-nextjs` |
-| **Railway** | ✅ Full | Add build command: `npm run build` |
-| **Docker** | ✅ Full | See Dockerfile below |
-| **GitHub Pages** | ⚠️ Limited | Static export only (no API routes) |
+| Platform | Support | Free Tier | Notes |
+|----------|---------|-----------|-------|
+| **Netlify** | ✅ Full | 100GB bandwidth/mo | Recommended |
+| **Render** | ✅ Full | 750 hrs/mo | Good alternative |
+| **Railway** | ✅ Full | $5 credit/mo | Easy setup |
+| **Cloudflare Pages** | ✅ Full | Unlimited requests | Very fast CDN |
+
+<details>
+<summary>📦 Deploy to Render (Free)</summary>
+
+1. Go to [render.com](https://render.com) and sign up
+2. Click "New" → "Web Service"
+3. Connect your GitHub repo
+4. Configure:
+   - **Build Command:** `npm install && npm run build`
+   - **Start Command:** `npm start`
+5. Click "Create Web Service"
+
+</details>
+
+<details>
+<summary>📦 Deploy to Cloudflare Pages (Free)</summary>
+
+1. Go to [pages.cloudflare.com](https://pages.cloudflare.com)
+2. Click "Create a project" → "Connect to Git"
+3. Select your repository
+4. Configure:
+   - **Build command:** `npm run build`
+   - **Build output directory:** `.next`
+5. Add environment variable: `NODE_VERSION` = `20`
+6. Click "Save and Deploy"
+
+</details>
 
 <details>
 <summary>📦 Docker Deployment</summary>
@@ -224,6 +252,7 @@ mcpilot/
 │       └── mcp-servers.ts  # Server definitions
 ├── public/
 │   └── screenshots/        # App screenshots
+├── netlify.toml            # Netlify configuration
 └── package.json
 ```
 
