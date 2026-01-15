@@ -182,13 +182,17 @@ export function ChatMessage({ message }: ChatMessageProps) {
           )}
 
           {/* Text content */}
-          {message.role === "user" ? (
-            <p className="text-sm">{String(message.content)}</p>
-          ) : (
-            <div className="prose prose-sm prose-invert max-w-none">
-              {renderMarkdown(String(message.content))}
-            </div>
-          )}
+          {(() => {
+            const content = String(message.content);
+            if (message.role === "user") {
+              return <p className="text-sm">{content}</p>;
+            }
+            return (
+              <div className="prose prose-sm prose-invert max-w-none">
+                {renderMarkdown(content)}
+              </div>
+            );
+          })()}
 
           {/* Request/Response blocks */}
           {message.request && (
