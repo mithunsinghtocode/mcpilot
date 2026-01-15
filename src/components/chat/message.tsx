@@ -14,6 +14,9 @@ interface ChatMessageProps {
 export function ChatMessage({ message }: ChatMessageProps) {
   const [copied, setCopied] = React.useState(false);
   const [expanded, setExpanded] = React.useState(true);
+  
+  // Extract content as string to avoid TypeScript inference issues
+  const messageContent: string = String(message.content ?? "");
 
   const copyContent = async (content: string) => {
     await navigator.clipboard.writeText(content);
@@ -182,17 +185,13 @@ export function ChatMessage({ message }: ChatMessageProps) {
           )}
 
           {/* Text content */}
-          {(() => {
-            const content = String(message.content);
-            if (message.role === "user") {
-              return <p className="text-sm">{content}</p>;
-            }
-            return (
-              <div className="prose prose-sm prose-invert max-w-none">
-                {renderMarkdown(content)}
-              </div>
-            );
-          })()}
+          {message.role === "user" ? (
+            <p className="text-sm">{messageContent}</p>
+          ) : (
+            <div className="prose prose-sm prose-invert max-w-none">
+              {renderMarkdown(messageContent)}
+            </div>
+          )}
 
           {/* Request/Response blocks */}
           {message.request && (
