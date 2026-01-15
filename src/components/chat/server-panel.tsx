@@ -124,7 +124,7 @@ export function ServerPanel({
           <span className="text-3xl">{server.icon}</span>
           <div className="flex-1">
             <h2 className="font-semibold text-lg">{server.name}</h2>
-            <p className="text-sm text-muted-foreground">v{server.version} by {server.author}</p>
+            <p className="text-sm text-muted-foreground">v{server.version}</p>
           </div>
         </div>
         <p className="mt-3 text-sm text-muted-foreground line-clamp-2">{server.description}</p>

@@ -187,9 +187,6 @@ function ServerCard({ server, onClick }: ServerCardProps) {
             <span className="text-[10px] text-muted-foreground">
               {server.tools.length} tools
             </span>
-            <span className="text-[10px] text-muted-foreground">
-              by {server.author}
-            </span>
             {server.usageCount && (
               <span className="flex items-center gap-0.5 text-[10px] text-green-500">
                 <TrendingUp className="w-3 h-3" />
