@@ -202,7 +202,7 @@ ${tool.name} ${tool.exampleRequest ? JSON.stringify(tool.exampleRequest) : '{}'}
         // Try to extract path or simple parameter
         if (rest) {
           // Remove quotes if present
-          let value = rest.replace(/^["']|["']$/g, "");
+          const value = rest.replace(/^["']|["']$/g, "");
           
           // Get the first required parameter
           const firstRequired = tool.inputSchema.required?.[0];
