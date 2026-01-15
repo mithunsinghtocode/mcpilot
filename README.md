@@ -25,10 +25,6 @@
 ![Servers Modal](./public/screenshots/servers-modal.png)
 *Browse 40+ MCP servers by category*
 
-### Mock vs Real Mode
-![Mode Toggle](./public/screenshots/mode-toggle.png)
-*Switch between mock testing and real execution*
-
 ---
 
 ## ✨ Features
