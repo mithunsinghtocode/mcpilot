@@ -21,8 +21,9 @@ export function SwaggerExample({ tool, serverSlug, onTryIt }: SwaggerExampleProp
   const exampleRequest = tool.exampleRequest || generateExampleRequest(tool);
   const exampleResponse = tool.exampleResponse || generateExampleResponse(tool, serverSlug);
 
-  const copyToClipboard = async (text: string, type: "request" | "response") => {
-    await navigator.clipboard.writeText(JSON.stringify(text, null, 2));
+  const copyToClipboard = async (data: unknown, type: "request" | "response") => {
+    const text = typeof data === "string" ? data : JSON.stringify(data, null, 2);
+    await navigator.clipboard.writeText(text);
     if (type === "request") {
       setCopiedRequest(true);
       setTimeout(() => setCopiedRequest(false), 2000);

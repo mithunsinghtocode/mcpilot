@@ -11,12 +11,32 @@ interface ChatMessageProps {
   message: Message;
 }
 
+// Helper to safely get content as string
+function getMessageContent(content: unknown): string {
+  if (typeof content === "string") return content;
+  if (typeof content === "number") return String(content);
+  if (content === null || content === undefined) return "";
+  return JSON.stringify(content);
+}
+
 export function ChatMessage({ message }: ChatMessageProps) {
   const [copied, setCopied] = React.useState(false);
   const [expanded, setExpanded] = React.useState(true);
   
-  // Extract content as string to avoid TypeScript inference issues
-  const messageContent: string = String(message.content ?? "");
+  // Extract content as string with explicit typing
+  const messageContent = getMessageContent(message.content);
+
+  // Render text content with explicit return type
+  const renderTextContent = (): React.ReactNode => {
+    if (message.role === "user") {
+      return <p className="text-sm">{messageContent}</p>;
+    }
+    return (
+      <div className="prose prose-sm prose-invert max-w-none">
+        {renderMarkdown(messageContent)}
+      </div>
+    );
+  };
 
   const copyContent = async (content: string) => {
     await navigator.clipboard.writeText(content);
@@ -185,16 +205,10 @@ export function ChatMessage({ message }: ChatMessageProps) {
           )}
 
           {/* Text content */}
-          {message.role === "user" ? (
-            <p className="text-sm">{messageContent}</p>
-          ) : (
-            <div className="prose prose-sm prose-invert max-w-none">
-              {renderMarkdown(messageContent)}
-            </div>
-          )}
+          {renderTextContent() as React.ReactNode}
 
           {/* Request/Response blocks */}
-          {message.request && (
+          {message.request != null && (
             <div className="mt-3">
               <button
                 onClick={() => setExpanded(!expanded)}
@@ -229,7 +243,7 @@ export function ChatMessage({ message }: ChatMessageProps) {
             </div>
           )}
 
-          {message.response && (
+          {message.response != null && (
             <div className="mt-3">
               <div className="flex items-center gap-2 mb-2">
                 <span className="text-xs text-muted-foreground">Response</span>
