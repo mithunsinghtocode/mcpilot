@@ -183,10 +183,10 @@ export function ChatMessage({ message }: ChatMessageProps) {
 
           {/* Text content */}
           {message.role === "user" ? (
-            <p className="text-sm">{message.content}</p>
+            <p className="text-sm">{String(message.content)}</p>
           ) : (
             <div className="prose prose-sm prose-invert max-w-none">
-              {renderMarkdown(message.content)}
+              {renderMarkdown(String(message.content))}
             </div>
           )}
 
